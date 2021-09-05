@@ -6,6 +6,7 @@ import org.lwjgl.opengl.GL
 import org.lwjgl.opengl.GL11.*
 import org.lwjgl.system.MemoryStack.stackPush
 import org.lwjgl.system.MemoryUtil.NULL
+import resources.TextureRegistry
 
 
 class Application {
@@ -71,11 +72,30 @@ class Application {
 
         // Init GL
         GL.createCapabilities()
-        glClearColor(1.0f, .0f, .0f, 1.0f)
+
+        val reg = TextureRegistry()
+        reg.load("test", "res/test.png")
+        println("Handle: ${reg["test"]?.handle}")
+
+        glEnable(GL_TEXTURE_2D)
+        glClearColor(.0f, .0f, .0f, 1.0f)
 
         // Loop
         while (!glfwWindowShouldClose(window)) {
             glClear(GL_COLOR_BUFFER_BIT)
+
+            reg["test"]?.bind()
+
+            glBegin(GL_QUADS)
+            glTexCoord2f(.0f, .0f)
+            glVertex2f(-.5f, -.5f)
+            glTexCoord2f(.0f, 1.0f)
+            glVertex2f(-.5f, .5f)
+            glTexCoord2f(1.0f, 1.0f)
+            glVertex2f(.5f, .5f)
+            glTexCoord2f(1.0f, .0f)
+            glVertex2f(.5f, -.5f)
+            glEnd()
 
             glfwSwapBuffers(window)
             glfwPollEvents()
