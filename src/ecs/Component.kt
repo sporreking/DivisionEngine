@@ -8,4 +8,7 @@ abstract class Component {
 
     /** The unique [id] associated with this component instance. */
     val id = ++COMPONENT_ID_COUNTER
+
+    /** Shorthand for getting the parent's transform. */
+    val transform get() = parent?.transform
 }

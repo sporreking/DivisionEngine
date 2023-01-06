@@ -1,16 +1,16 @@
 package ecs
 
-import com.curiouscreature.kotlin.math.Float3
+import com.curiouscreature.kotlin.math.*
 
 data class Transform(
     /** The position of this transform. */
-    val position: Float3 = Float3(),
+    var position: Float3 = Float3(),
 
     /** The scale of this transform. */
-    val scale: Float3 = Float3(1.0f, 1.0f, 1.0f),
+    var scale: Float3 = Float3(1.0f, 1.0f, 1.0f),
 
-    /** The rotation of this transform. */
-    val rotation: Float3 = Float3()
+    /** The orientation of this transform. */
+    var orientation: Quaternion = Quaternion.identity()
 ) : Component() {
     inline var px: Float get() = position.x; set(x) { position.x = x }
     inline var py: Float get() = position.y; set(y) { position.y = y }
@@ -20,7 +20,17 @@ data class Transform(
     inline var sy: Float get() = scale.y; set(y) { scale.y = y }
     inline var sz: Float get() = scale.z; set(z) { scale.z = z }
 
-    inline var rx: Float get() = rotation.x; set(x) { rotation.x = x }
-    inline var ry: Float get() = rotation.y; set(y) { rotation.y = y }
-    inline var rz: Float get() = rotation.z; set(z) { rotation.z = z }
+    inline var rx: Float get() = orientation.toEulerAngles().y
+        set(x) { orientation = Quaternion.fromEulers(orientation.toEulerAngles().also { it.y = x }, 0f) }
+
+    inline var ry: Float get() = orientation.z
+        set(y) { orientation = Quaternion.fromEulers(orientation.toEulerAngles().also { it.z = y }, 0f) }
+
+    inline var rz: Float get() = orientation.x
+        set(z) { orientation = Quaternion.fromEulers(orientation.toEulerAngles().also { it.x = z }, 0f) }
+
+    inline val forward get() = (Mat4.from(orientation) * Float4(0f, 0f, -1f, 1f)).xyz
+    inline val up get() = (Mat4.from(orientation) * Float4(0f, 1f, 0f, 1f)).xyz
+
+    inline val matrix: Mat4 get() = translation(position) * Mat4.from(orientation) * scale(scale)
 }

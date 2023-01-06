@@ -1,12 +1,25 @@
 package resources
 
-abstract class Registry<T> {
+class RegistryKit {
+
+    companion object {
+        val DEFAULT = RegistryKit()
+    }
+
+    val shaderProgram = ShaderProgramRegistry()
+    val texture = TextureRegistry()
+    val mesh = MeshRegistry()
+    val font = FontRegistry()
+    val audioClip = AudioClipRegistry()
+}
+
+abstract class Registry<T, L> : Iterable<String> {
 
     /** Map for internal resource storage. */
-    private val resources = mutableMapOf<String, T>()
+    var resources = mutableMapOf<String, T>()
 
-    /** Loads a resources from the given [path] and stores it at the specified [name]. */
-    abstract fun load(name: String, path: String)
+    /** Loads a resources using the given [loadInstruction] and stores it at the specified [name]. */
+    abstract fun load(name: String, loadInstruction: L): T?
 
     /**
      * Stores the given [resource] at the specified [name].
@@ -16,4 +29,6 @@ abstract class Registry<T> {
 
     /** Gets the resource associated with the specified [name]. */
     operator fun get(name: String) = resources[name]
+
+    override fun iterator() = resources.keys.iterator()
 }

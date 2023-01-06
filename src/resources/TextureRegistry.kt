@@ -2,9 +2,13 @@ package resources
 
 import org.lwjgl.stb.STBImage
 
-class TextureRegistry : Registry<Texture>() {
+class TextureRegistry : Registry<Texture, String>() {
 
-    override fun load(name: String, path: String) {
+    /**
+     * Loads a resources using the system file path described by [loadInstruction],
+     * and stores it at the specified [name].
+     */
+    override fun load(name: String, loadInstruction: String): Texture? {
 
         // Allocate information slots
         val w = IntArray(1)
@@ -13,12 +17,15 @@ class TextureRegistry : Registry<Texture>() {
 
         // Load image onto heap
         STBImage.stbi_set_flip_vertically_on_load(true)
-        val data = STBImage.stbi_load(path, w, h, comp, 4) ?: return
+        val data = STBImage.stbi_load(loadInstruction, w, h, comp, 4) ?: return null
 
         // Generate texture and store in registry
-        set(name, Texture(data, w[0], h[0]))
+        val t = Texture(data, w[0], h[0])
+        set(name, t)
 
         // Free image from heap
         STBImage.stbi_image_free(data)
+
+        return t
     }
 }
