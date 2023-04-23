@@ -2,6 +2,10 @@ package ecs
 
 import io.InputManager
 
+/**
+ * Keeps track of [systems][ECSystem], [entities][Entity], and their [components][Component]. Scenes are conventionally
+ * handled using a [SceneManager], but may also be updated directly using the [update] and [render] methods.
+ */
 class Scene(
     /** The systems to use for this scene, in sequential order. */
     private vararg val systems: ECSystem

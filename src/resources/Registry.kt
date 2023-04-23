@@ -1,5 +1,6 @@
 package resources
 
+/** Wraps one instance of each registry. */
 class RegistryKit {
 
     companion object {
@@ -13,6 +14,7 @@ class RegistryKit {
     val audioClip = AudioClipRegistry()
 }
 
+/** Used to keep track of labeled resources. */
 abstract class Registry<T, L> : Iterable<String> {
 
     /** Map for internal resource storage. */

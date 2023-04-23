@@ -34,6 +34,10 @@ data class GameProperties(
     val windowClearColor: Float4
 )
 
+/**
+ * The main wrapper of the entire division engine application. When the [run] method is called with a starting [Scene],
+ * a new window with the specified [properties] is opened, and the scene starts to loop using the [sceneManager].
+ */
 class DivisionEngine(
     /** The properties of the game. */
     val properties: GameProperties

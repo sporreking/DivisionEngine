@@ -2,6 +2,7 @@ package ecs
 
 import io.InputManager
 
+/** Keeps track of what [Scene] is currently active, and allows it to be updated with the [loop] method. */
 class SceneManager {
 
     /** The current scene, or null if there is none. */

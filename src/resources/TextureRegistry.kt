@@ -2,6 +2,7 @@ package resources
 
 import org.lwjgl.stb.STBImage
 
+/** Keeps track of labeled [Textures][Texture]. */
 class TextureRegistry : Registry<Texture, String>() {
 
     /**

@@ -4,6 +4,7 @@ import org.lwjgl.openal.AL10.*
 import org.lwjgl.stb.STBVorbisInfo
 import java.nio.ShortBuffer
 
+/** Represents a playable audio clip. */
 class AudioClip(
     /** The data to use for this audio clip. */
     pcm: ShortBuffer,
@@ -22,6 +23,5 @@ class AudioClip(
             pcm,
             info.sample_rate()
         )
-        println(info.channels())
     }
 }

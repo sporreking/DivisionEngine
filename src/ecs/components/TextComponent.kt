@@ -8,6 +8,7 @@ import resources.Mesh
 import resources.ShaderProgram
 import ecs.systems.TextRenderSystem
 
+/** Represents renderable text. Requires a [TextRenderSystem]. */
 class TextComponent(
     /** The font to use for this component. */
     val font: Font,

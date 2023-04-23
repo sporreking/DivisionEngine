@@ -8,6 +8,10 @@ import io.InputManager
 import io.Logger
 import org.lwjgl.openal.AL10.*
 
+/**
+ * Update all [audio sources][AudioSourceComponent] within the scene, and the [AudioListenerComponent] if it exists.
+ * Note that there should only be one audio listener within each scene.
+ */
 class SimpleAudioSystem : ECSystem() {
     override fun update(scene: Scene, inputManager: InputManager, delta: Double) {
         // Update listener

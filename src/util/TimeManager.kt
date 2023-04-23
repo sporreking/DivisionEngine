@@ -1,5 +1,6 @@
 package util
 
+/** Utilities for managing time. */
 class TimeManager {
 
     private val secondsSinceEpoch get() = System.nanoTime().toDouble() / 1_000_000_000

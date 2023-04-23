@@ -3,6 +3,7 @@ package resources
 import org.lwjgl.opengl.GL13.*
 import java.nio.ByteBuffer
 
+/** Represents a texture. */
 class Texture(
     /** The texture data to send to the GPU. */
     data: ByteBuffer,

@@ -2,6 +2,7 @@ package ecs
 
 import com.curiouscreature.kotlin.math.*
 
+/** Core component representing a viewpoint. */
 data class Camera(
     /** The projection matrix of this camera. */
     val projection: Mat4
@@ -17,5 +18,6 @@ data class Camera(
                 = Camera(perspective(fov = fieldOfView, aspect = aspectRatio, near = near, far = far))
     }
 
+    /** The view matrix of this camera. Derived using the [parent]'s [Transform]. */
     inline val view get() = inverse(parent?.transform?.matrix ?: Mat4.identity())
 }

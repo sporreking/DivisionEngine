@@ -2,6 +2,7 @@ package ecs
 
 private var COMPONENT_ID_COUNTER = 0L
 
+/** Defines some property of an [Entity]. */
 abstract class Component {
     /** The entity to which this component is attached, or `null` if is not attached to anything. */
     var parent: Entity? = null

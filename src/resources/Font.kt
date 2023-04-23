@@ -1,7 +1,9 @@
 package resources
 
 import com.curiouscreature.kotlin.math.Float2
+import kotlin.math.ceil
 
+/** Describes the properties of a literal character. */
 data class FontChar(
     val id: Char,
     val textureCoordinates: List<Float2>,
@@ -14,12 +16,24 @@ data class FontChar(
     }
 }
 
+/** Describes a font and all of its properties. */
 data class Font(
+    /** The name of the font. */
     val name: String,
+
+    /** The font map. */
     val texture: Texture,
+
+    /** The characters of this font. */
     val characters: Map<Char, FontChar>,
+
+    /** The line height of this font. */
     val lineHeight: Float,
+
+    /** the base height of this font. */
     val base: Float,
+
+    /** The padding of this font. */
     val padding: List<Float>
 ) {
     val paddingTop get() = padding[0]
@@ -42,5 +56,6 @@ data class Font(
         }.toFloat()
     }
 
+    // TODO: IMPLEMENT
     fun getTextHeight(text: String, maxWidth: Float) = 0f
 }

@@ -3,6 +3,7 @@ package resources
 import java.io.File
 
 
+/** Instructions for loading a shader. */
 class ShaderLoadInstruction(
     /** The shader type. */
     val type: ShaderType,
@@ -10,6 +11,7 @@ class ShaderLoadInstruction(
     val path: String
 )
 
+/** Keeps track of labeled [ShaderPrograms][ShaderProgram]. */
 class ShaderProgramRegistry(
     /** If true, default values from [ShaderProgram.DEFAULT] will be added to this registry. */
     addDefaults: Boolean = true

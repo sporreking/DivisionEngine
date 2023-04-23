@@ -1,5 +1,6 @@
 package resources
 
+/** Keeps track of labeled [Meshes][Mesh]. */
 class MeshRegistry : Registry<Mesh, String>() {
 
     companion object {

@@ -4,6 +4,7 @@ import com.curiouscreature.kotlin.math.Float2
 import org.lwjgl.opengl.GL11.GL_LINEAR
 import java.io.File
 
+/** Instructions for loading a font. */
 data class FontLoadInstruction(
     /** A path leading to a `.fnt` file to load. */
     val path: String,
@@ -12,6 +13,7 @@ data class FontLoadInstruction(
     val desiredPadding: Int
 )
 
+/** Keeps track of labeled [Fonts][Font]. */
 class FontRegistry : Registry<Font, FontLoadInstruction>() {
     override fun load(name: String, loadInstruction: FontLoadInstruction) = set(
         name,

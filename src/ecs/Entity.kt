@@ -2,6 +2,11 @@ package ecs
 
 private var ENTITY_ID_COUNTER = 0L
 
+/**
+ * Used for representing something with the game. An entity consists of a [Transform], and some arbitrary
+ * [components][Component]. The transform provides spatial properties for the entity, while the components define
+ * its remaining properties. Without components, an entity is practically an empty shell.
+ */
 class Entity(
     /** The initial [components] of this entity. */
     vararg components: Component

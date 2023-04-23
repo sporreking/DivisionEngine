@@ -2,6 +2,7 @@ package ecs
 
 import com.curiouscreature.kotlin.math.*
 
+/** Core component representing a transform. */
 data class Transform(
     /** The position of this transform. */
     var position: Float3 = Float3(),

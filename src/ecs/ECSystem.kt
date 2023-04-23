@@ -2,6 +2,7 @@ package ecs
 
 import io.InputManager
 
+/** Responsible for updating [components][Component] within a [Scene]. */
 abstract class ECSystem {
     /**
      * Updates the specified [scene] using this system. The [inputManager] may be used to handle user input.

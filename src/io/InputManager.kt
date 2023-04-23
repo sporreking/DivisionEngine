@@ -6,8 +6,10 @@ import org.lwjgl.glfw.GLFWGamepadState
 import kotlin.math.abs
 import kotlin.math.max
 
+/** Unique identifier of a button. */
 typealias Button = Int
 
+/** Represents the state of a button. */
 enum class ButtonState {
 
     /** The button is not being pressed down. */
@@ -23,8 +25,10 @@ enum class ButtonState {
     RELEASED
 }
 
+/** Unique identifier of an axis. */
 typealias Axis = Int
 
+/** The configuration of an axis. */
 data class AxisConfig(
     /** The axis to which the configuration applies. */
     val axis: Axis,
@@ -39,6 +43,7 @@ data class AxisConfig(
     var invert: Boolean = false
 )
 
+/** Represents the state of an axis. */
 data class AxisState(
     /** The magnitude limit of the axis. */
     val limit: Float,
@@ -59,6 +64,7 @@ data class AxisState(
     val value get() = staticValue + dynamicValue
 }
 
+/** The configuration of a game pad. */
 data class GamepadConfig(
     /** The ID of this gamepad. This corresponds to one of the GLFW joystick constants, e.g., `GLFW_JOYSTICK_1`.  */
     val id: Int
@@ -80,6 +86,7 @@ data class GamepadConfig(
     val heldButtons: MutableSet<Button> = mutableSetOf()
 }
 
+/** Manages controller, keyboard, and mouse input etc. */
 class InputManager(
     /** The window to which the input manager applies. */
     private val window: Long

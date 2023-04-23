@@ -1,7 +1,6 @@
 package io
 
-import java.io.File
-
+/** Used for loading files. */
 class FileLoader {
     companion object {
 

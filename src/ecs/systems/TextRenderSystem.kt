@@ -11,6 +11,9 @@ import org.lwjgl.opengl.GL11.GL_UNSIGNED_INT
 import org.lwjgl.opengl.GL11.glDrawElements
 import resources.*
 
+/**
+ * Handles [TextComponents][TextComponent] such that their [meshes][TextComponent.mesh] are updated, and renders them.
+ */
 class TextRenderSystem : ECSystem() {
     override fun update(scene: Scene, inputManager: InputManager, delta: Double) {
         scene.getComponents<TextComponent>().values.forEach { tc ->

@@ -5,8 +5,9 @@ import com.curiouscreature.kotlin.math.Float3
 import com.curiouscreature.kotlin.math.Float4
 import org.lwjgl.opengl.GL30.*
 
+/** Represents data for an attribute. See [validTypes]. */
 class AttributeData<T : Any>(
-    /** The vertex attribute location of this particular data. */
+    /** The vertex attribute location of this particular data. See "`ATTLOC_`" constants within [ShaderProgram]. */
     val attributeLocation: Int,
 
     /** A list with data. Each element must be of same type. Make sure that the type is valid. See [validTypes]. */
@@ -58,8 +59,9 @@ class AttributeData<T : Any>(
     }.toFloatArray()
 }
 
+/** Represents some vertex data on the GPU. */
 class VertexBufferObject(
-    /** The data to use for this VBO. */
+    /** The data to use for this VBO. Sent to the GPU upon construction. */
     data: AttributeData<*>
 ) {
 
@@ -113,8 +115,9 @@ class VertexBufferObject(
     fun bind() = glBindBuffer(GL_ARRAY_BUFFER, handle)
 }
 
+/** Represents some index data on the GPU. */
 class IndexBufferObject(
-    /** The indices to use. */
+    /** The indices to use. Sent to the GPU upon construction. */
     data: List<Int>,
 
     /** Must be set to true if the [data] should be mutable. */
@@ -155,6 +158,7 @@ class IndexBufferObject(
     fun bind() = glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, handle)
 }
 
+/** Represents a mesh. */
 class Mesh(
     /** The data to use for each desired attribute. */
     data: List<AttributeData<*>>,

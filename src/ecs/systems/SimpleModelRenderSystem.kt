@@ -7,6 +7,10 @@ import ecs.components.ModelComponent
 import io.InputManager
 import org.lwjgl.opengl.GL11.*
 
+/**
+ * Renders [ModelComponets][ModelComponent] in the scenes using their respective [meshes][resources.Mesh],
+ * [materials][resources.Material], and [shaders][resources.ShaderProgram].
+ */
 class SimpleModelRenderSystem : ECSystem() {
     override fun update(scene: Scene, inputManager: InputManager, delta: Double) = Unit
 

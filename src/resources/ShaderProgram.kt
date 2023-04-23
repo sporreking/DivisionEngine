@@ -4,6 +4,7 @@ import ecs.Camera
 import ecs.Transform
 import org.lwjgl.opengl.GL20.*
 
+/** Represents a shader type, e.g., vertex or fragment shader. */
 enum class ShaderType(
     /** The integer associated with the shader type. Corresponds to the shader type's underlying OpenGL constant. */
     val const: Int
@@ -12,6 +13,7 @@ enum class ShaderType(
     VERTEX(GL_VERTEX_SHADER), FRAGMENT(GL_FRAGMENT_SHADER);
 }
 
+/** Represents a single shader. */
 class Shader(
     /** The type of this shader. */
     val type: ShaderType,
@@ -37,6 +39,7 @@ class Shader(
     }
 }
 
+/** Represent a shader program. */
 class ShaderProgram(
     /** The shaders to use for this shader program. */
     shaders: List<Shader>

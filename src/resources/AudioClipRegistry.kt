@@ -8,6 +8,7 @@ import org.lwjgl.system.MemoryUtil.NULL
 import java.io.File
 import java.nio.ByteBuffer
 
+/** Keeps track of labeled [AudioClips][AudioClip]. */
 class AudioClipRegistry : Registry<AudioClip, String>() {
     override fun load(name: String, loadInstruction: String) = set(
         name,
