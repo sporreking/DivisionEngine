@@ -38,14 +38,14 @@ class Spawner(val scene: Scene) {
             shaderProgram = breakoutRegistry.shaderProgram["test"]!!
         ),
         CollisionReductor(),
-        HealthComponent(1.0f),
+        HealthComponent(1f),
         PowerupSpawner()
     ).also { e -> scene.add(e) }.apply {
         transform.position.xy = position
         transform.scale.xy = size
     }
 
-    fun pad(position: Float2, size: Float2 = Float2(.15f, .05f), speed: Float = 1.0f) = Entity(
+    fun pad(position: Float2, size: Float2 = Float2(.15f, .05f), speed: Float = 1f) = Entity(
         BoxCollider(offset = Float2(0f), dimensions = Float2(1f, 1f)),
         ModelComponent(
             mesh = Mesh.QUAD,

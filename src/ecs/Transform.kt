@@ -8,7 +8,7 @@ data class Transform(
     var position: Float3 = Float3(),
 
     /** The scale of this transform. */
-    var scale: Float3 = Float3(1.0f, 1.0f, 1.0f),
+    var scale: Float3 = Float3(1f, 1f, 1f),
 
     /** The orientation of this transform. */
     var orientation: Quaternion = Quaternion.identity()

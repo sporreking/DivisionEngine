@@ -9,5 +9,5 @@ enum class PowerupEffect {
 
 data class Powerup(
     val effect: PowerupEffect,
-    val fallSpeed: Float = 1.0f
+    val fallSpeed: Float = 1f
 ) : Component()

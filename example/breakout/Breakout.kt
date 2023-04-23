@@ -7,7 +7,7 @@ import io.Axis
 import io.InputManager
 import org.lwjgl.glfw.GLFW
 
-const val MOVE_SPEED = 1.0f
+const val MOVE_SPEED = 1f
 
 const val AXIS_MOVE_X: Axis = 1
 const val AXIS_MOVE_Y: Axis = 2

@@ -5,16 +5,16 @@ import com.curiouscreature.kotlin.math.Float4
 /** Represents visual properties. Primarily used to describe texture and lighting for rendering. */
 data class Material(
     /** The diffuse lighting component of this material. */
-    var kd: Float = 1.0f,
+    var kd: Float = 1f,
 
     /** The specular lighting component of this material. */
     var ks: Float = .0f,
 
     /** The specular alpha exponent of this material. */
-    var alpha: Float = 1.0f,
+    var alpha: Float = 1f,
 
     /** The color of this material. */
-    var color: Float4 = Float4(1.0f),
+    var color: Float4 = Float4(1f),
 
     /** The texture of this material. */
     var texture: Texture? = null

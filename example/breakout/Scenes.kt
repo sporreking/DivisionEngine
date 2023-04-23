@@ -66,6 +66,6 @@ fun newBreakoutScene(properties: GameProperties) = Scene(
     spawner.pad(
         position = Float2(.0f, -.9f),
         size = Float2(0.3f, .05f),
-        speed = 2.0f
+        speed = 2f
     )
 }
