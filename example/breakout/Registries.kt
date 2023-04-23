@@ -11,6 +11,7 @@ val breakoutRegistry = RegistryKit().apply {
     // Register textures
     with(texture) {
         load("test", "res/test.png")
+        load("pu_size_up", "res/textures/pu_size_up.png")
     }
 
     // Register shader programs

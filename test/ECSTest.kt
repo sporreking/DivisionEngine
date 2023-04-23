@@ -2,6 +2,7 @@ import ecs.Component
 import ecs.ECSystem
 import ecs.Entity
 import ecs.Scene
+import io.InputManager
 import org.junit.Test
 
 
@@ -10,8 +11,8 @@ class ECSTest {
     private data class TestComponent(var x: Double) : Component()
 
     private class TestSystem : ECSystem() {
-        override fun update(scene: Scene) = scene.getComponents<TestComponent>().values.forEach { c -> c.x += 1.0 }
-        override fun render(scene: Scene) {}
+        override fun update(scene: Scene, inputManager: InputManager, delta: Double) = scene.getComponents<TestComponent>().values.forEach { c -> c.x += 1.0 }
+        override fun render(scene: Scene) = Unit
     }
 
     @Test
@@ -43,7 +44,7 @@ class ECSTest {
         println("Components on entity:")
         e1.forEach(::println)
 
-        s.update()
+        s.update(InputManager(0L), .0)
 
         println("Components on entity after scene update:")
         e1.getAll<TestComponent>().forEach(::println)
@@ -53,7 +54,7 @@ class ECSTest {
         println("Components on entity after removal of c2:")
         e1.forEach(::println)
 
-        s.update()
+        s.update(InputManager(0L), .0)
 
         println("(c1, c2) after another scene update: ($c1, $c2)")
     }

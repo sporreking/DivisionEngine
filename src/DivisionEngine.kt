@@ -142,8 +142,8 @@ class DivisionEngine(
     private fun loop() {
         // TODO: Maybe don't remove?
         glEnable(GL_TEXTURE_2D)
-        glEnable(GL_BLEND);
-        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        glEnable(GL_BLEND)
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
         with (properties.windowClearColor) { glClearColor(r, g, b, a) }
 
         // Setup time

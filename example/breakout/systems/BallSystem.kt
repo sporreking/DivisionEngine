@@ -5,6 +5,7 @@ import breakout.AXIS_MOVE_X
 import breakout.AXIS_MOVE_Y
 import breakout.components.BallComponent
 import breakout.components.BoxCollider
+import breakout.components.CollisionInfo
 import com.curiouscreature.kotlin.math.Float2
 import ecs.ECSystem
 import ecs.Scene
@@ -50,7 +51,7 @@ class BallSystem : ECSystem() {
         if (!info.intersecting) return
 
         // Add collision
-        collider.collisions.add(ball.id)
+        collider.collisions.add(CollisionInfo(ball.parent!!.id, ballAABB.position))
 
         // Update velocity based on placement in previous frame TODO: FIX EDGE CASES
         if (prevBallAABB leftOf colliderAABB) {

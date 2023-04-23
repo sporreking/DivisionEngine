@@ -1,25 +1,24 @@
 package breakout
 
 import GameProperties
-import breakout.components.BallComponent
-import breakout.components.BoxCollider
-import breakout.systems.BallSystem
+import breakout.systems.*
 import com.curiouscreature.kotlin.math.Float2
 import ecs.Camera
 import ecs.ECSystem
 import ecs.Entity
 import ecs.Scene
-import ecs.components.ModelComponent
 import ecs.systems.SimpleAudioSystem
 import ecs.systems.SimpleCameraFetchingSystem
 import ecs.systems.SimpleModelRenderSystem
 import io.InputManager
-import resources.Material
-import resources.Mesh
 
 fun newBreakoutScene(properties: GameProperties) = Scene(
     SimpleCameraFetchingSystem(), // Fetch camera
+    ControllerSystem(), // Update pad
     BallSystem(), // Update balls
+    CollisionSystem(), // Collision handling
+    PowerupSystem(),
+    HealthSystem(), // Clear dead entities
     SimpleModelRenderSystem(), // Render models
     SimpleAudioSystem(), // Play audio
     object : ECSystem() { // Testing
@@ -50,10 +49,23 @@ fun newBreakoutScene(properties: GameProperties) = Scene(
         }
     }
 
+    // Spawn walls
+    spawner.wall(Float2(0f, 1f), Float2(4f, .1f)) // Top
+    spawner.wall(Float2(-1.5f, 0f), Float2(.1f, 2f)) // Left
+    spawner.wall(Float2(1.5f, 0f), Float2(.1f, 2f)) // Right
+
+
     // Spawn ball
     spawner.ball(
         position = Float2(0f, .2f),
-        size = Float2(.01f),
-        velocity = Float2(.2f, .3f)
+        size = Float2(.03f),
+        velocity = Float2(.3f, .6f)
+    )
+
+    // Spawn pad
+    spawner.pad(
+        position = Float2(.0f, -.9f),
+        size = Float2(0.3f, .05f),
+        speed = 2.0f
     )
 }

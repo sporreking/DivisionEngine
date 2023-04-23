@@ -26,6 +26,9 @@ class Scene(
     /** Returns all components of the specified [type] from this scene. */
     fun getComponents(type: Class<*>) = components[type] ?: emptyMap()
 
+    /** Returns the entity associated with the specified [id], or  null if there is no such entity. */
+    fun getEntity(id: Long) = entities[id]
+
     /** Adds the specified [component] to this scene. */
     internal fun addComponent(component: Component) {
         if (!components.containsKey(component.javaClass)) components[component.javaClass] = mutableMapOf()
