@@ -1,6 +1,8 @@
 package ecs
 
 import io.InputManager
+import io.SceneSaver
+import resources.RegistryKit
 
 /**
  * Keeps track of [systems][ECSystem], [entities][Entity], and their [components][Component]. Scenes are conventionally
@@ -8,7 +10,7 @@ import io.InputManager
  */
 class Scene(
     /** The systems to use for this scene, in sequential order. */
-    private vararg val systems: ECSystem
+    vararg val systems: ECSystem
 ) {
 
     private val components = mutableMapOf<Class<Component>, MutableMap<Long, Component>>()
@@ -81,4 +83,16 @@ class Scene(
 
     /** The current [camera] of this scene, or null if there is none. */
     var camera: Camera? = null
+
+    /** The manager of this scene, or null if there is none. */
+    var manager: SceneManager? = null
+        internal set
+
+    /** True if there are no entities within this scene. */
+    val empty get() = entities.isEmpty()
+
+    // TODO: REVIEW UPON RESOURCE SYSTEM UPDATE
+    // TODO: DOC
+    fun save(name: String, vararg registryKits: RegistryKit) = SceneSaver.save(name, components, entities, *registryKits)
+    fun load(name: String, vararg registryKits: RegistryKit) = SceneSaver.load(name, this, *registryKits)
 }

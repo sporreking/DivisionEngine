@@ -22,10 +22,11 @@ fun newBreakoutScene(properties: GameProperties) = Scene(
     SimpleModelRenderSystem(), // Render models
     SimpleAudioSystem(), // Play audio
     object : ECSystem() { // Testing
-        override fun update(scene: Scene, inputManager: InputManager, delta: Double) {}
-
-        override fun render(scene: Scene) {}
-
+        override fun update(scene: Scene, inputManager: InputManager, delta: Double) {
+            // if (inputManager.pressed(BUTTON_FIRE)) scene.save("breakout", breakoutRegistry)
+            if (inputManager.pressed(BUTTON_FIRE)) scene.manager!!.swap(Scene(*scene.systems).also { it.load("breakout", breakoutRegistry) })
+        }
+        override fun render(scene: Scene) = Unit
     }
 ).apply {
 

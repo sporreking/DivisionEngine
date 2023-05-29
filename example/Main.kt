@@ -5,12 +5,13 @@ import io.LogLevel
 import io.Logger
 
 // DONE: SM, Model(mesh, material, shader), Camera, Input, Time
-// ON HOLD: Spawner, Save state (use SerializersModule / SerializationStrategy(for parent entity etc))
+// DONE: Save state deprecated: (use SerializersModule / SerializationStrategy(for parent entity etc))
+// ON HOLD: Spawner,
 
 // DONE: Audio, text, controller input, add Kdoc for classes, float conversion (1.0f -> 1f)
 
 // TODO: autoformatting (constructor spacing etc.)
-// TODO: hooks
+// TODO: hooks (?)
 // TODO: Move load logic for resources, separate camera updater
 // TODO: Make game (breakout)
 

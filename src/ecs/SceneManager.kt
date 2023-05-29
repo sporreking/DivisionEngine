@@ -7,7 +7,7 @@ class SceneManager {
 
     /** The current scene, or null if there is none. */
     var currentScene: Scene? = null
-        private set
+        private set(scene) { scene?.manager = this; field = scene }
 
     private var nextScene: Scene? = null
 

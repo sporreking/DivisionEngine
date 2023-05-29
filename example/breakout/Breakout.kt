@@ -4,6 +4,7 @@ import DivisionEngine
 import GameProperties
 import com.curiouscreature.kotlin.math.Float4
 import io.Axis
+import io.Button
 import io.InputManager
 import org.lwjgl.glfw.GLFW
 
@@ -11,6 +12,8 @@ const val MOVE_SPEED = 1f
 
 const val AXIS_MOVE_X: Axis = 1
 const val AXIS_MOVE_Y: Axis = 2
+
+const val BUTTON_FIRE: Button = 1
 
 
 class Breakout {
@@ -37,6 +40,8 @@ class Breakout {
                 .5f,
                 true
             )
+
+            inputManager.bindKeyToButton(BUTTON_FIRE, GLFW.GLFW_KEY_SPACE)
         }
 
         fun run() {
