@@ -1,7 +1,10 @@
 package resources
 
 import org.lwjgl.opengl.GL13.*
+import org.lwjgl.stb.STBImage
 import java.nio.ByteBuffer
+
+data class TextureLoadInstruction(val path: String)
 
 /** Represents a texture. */
 class Texture(
@@ -11,7 +14,7 @@ class Texture(
     val width: Int,
     /** The height of the texture. */
     val height: Int
-) {
+) : Resource<TextureLoadInstruction>() {
 
     /** The OpenGL handle of this texture. */
     val handle = glGenTextures()
@@ -52,5 +55,25 @@ class Texture(
     fun bind(slot: Int = 0) {
         glActiveTexture(GL_TEXTURE0 + slot)
         glBindTexture(GL_TEXTURE_2D, handle)
+    }
+
+    override fun load(loadInstruction: TextureLoadInstruction) {
+        // Allocate information slots
+        val w = IntArray(1)
+        val h = IntArray(1)
+        val comp = IntArray(1)
+
+        // Load image onto heap
+        STBImage.stbi_set_flip_vertically_on_load(true)
+        val data = STBImage.stbi_load(loadInstruction.path, w, h, comp, 4) ?: return null
+
+        // Generate texture and store in registry
+        val t = Texture(data, w[0], h[0])
+        set(name, t)
+
+        // Free image from heap
+        STBImage.stbi_image_free(data)
+
+        return t
     }
 }
